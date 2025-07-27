@@ -16,6 +16,7 @@ A modern, responsive product page for the IELTS Course by Munzereen Shahid, buil
 ## 📋 Requirements Met
 
 ### Core Features ✅
+
 - [x] Title (product title from API)
 - [x] Description (HTML content from API)
 - [x] Course instructors (from sections array type=instructor)
@@ -26,6 +27,7 @@ A modern, responsive product page for the IELTS Course by Munzereen Shahid, buil
 - [x] Server-side rendering (SSR)
 
 ### Good to Have Features ✅
+
 - [x] Course layout (from sections array type=features)
 - [x] Learning outcomes (from sections array type=pointers)
 - [x] Course exclusive features (instructor section)
@@ -35,6 +37,7 @@ A modern, responsive product page for the IELTS Course by Munzereen Shahid, buil
 - [x] SEO optimization (meta tags, structured data)
 
 ### Technical Requirements ✅
+
 - [x] React/Next.js with TypeScript
 - [x] TailwindCSS for styling
 - [x] State and Props management
@@ -79,23 +82,26 @@ src/
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
-cd ielts-product-page
+cd IELTS-Course-by-Munzereen
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -114,13 +120,13 @@ npm start
 ### Build Docker Image
 
 ```bash
-docker build -t ielts-product-page .
+docker build -t IELTS-Course-by-Munzereen .
 ```
 
 ### Run Docker Container
 
 ```bash
-docker run -p 3000:3000 ielts-product-page
+docker run -p 3000:3000 IELTS-Course-by-Munzereen
 ```
 
 ## 🌐 API Integration
@@ -139,7 +145,7 @@ interface ProductData {
   id: number;
   title: string;
   description: string; // HTML content
-  media: Media[];      // Images and videos
+  media: Media[]; // Images and videos
   checklist: Checklist[];
   seo: Seo;
   cta_text: CtaText;
@@ -185,10 +191,12 @@ The application is fully responsive and tested on:
 ## 🌍 Localization
 
 Supports two languages:
+
 - **English (en)**: Default language
 - **Bengali (bn)**: Secondary language
 
 Language switching is handled through:
+
 - URL-based routing (`/en`, `/bn`)
 - Dynamic content loading from API
 - Localized UI text and labels
@@ -212,6 +220,7 @@ Language switching is handled through:
 ## 🧪 Testing
 
 The application has been tested for:
+
 - ✅ Functionality (all features working)
 - ✅ Responsiveness (mobile, tablet, desktop)
 - ✅ Performance (fast loading times)
@@ -231,4 +240,3 @@ This project is created for assessment purposes.
 ---
 
 **Note**: This is a frontend assessment project demonstrating modern React/Next.js development practices with TypeScript, TailwindCSS, SSR, localization, and SEO optimization.
-
