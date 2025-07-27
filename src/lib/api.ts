@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ProductData {
   slug: string;
   id: number;
@@ -6,18 +7,23 @@ export interface ProductData {
   media: Media[];
   checklist: Checklist[];
   seo: Seo;
-  cta_text: CtaText;
   sections: Section[];
+  cta_text: {
+    name: string;
+    en: string;
+    bn: string;
+  };
 }
 
 export interface Media {
-  type: 'image' | 'video';
+  type: "image" | "video";
   source: string;
   alt_text: string;
 }
 
 export interface Checklist {
-  title: string;
+  text: string;
+  icon: string;
   description: string;
 }
 
@@ -33,13 +39,18 @@ export interface CtaText {
 }
 
 export interface Section {
-  type: 'instructor' | 'features' | 'pointers' | 'about' | 'faq';
-  title: string;
+  description: string;
+  type: "instructors" | "features" | "pointers" | "about" | "faq";
+  name: string;
   instructors?: Instructor[];
   items?: FeatureItem[];
   pointers?: string[];
   details?: string;
   faqs?: FaqItem[];
+  values?: Instructor[];
+  question?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 export interface Instructor {
@@ -60,14 +71,16 @@ export interface FaqItem {
   id: string;
 }
 
-export async function getProductData(lang: 'en' | 'bn'): Promise<ProductData | null> {
+export async function getProductData(
+  lang: "en" | "bn"
+): Promise<ProductData | null> {
   try {
     const response = await fetch(
       `https://api.10minuteschool.com/discovery-service/api/v1/products/ielts-course?lang=${lang}`,
       {
         headers: {
-          'X-TENMS-SOURCE-PLATFORM': 'web',
-          'Accept': 'application/json',
+          "X-TENMS-SOURCE-PLATFORM": "web",
+          Accept: "application/json",
         },
       }
     );
@@ -80,9 +93,7 @@ export async function getProductData(lang: 'en' | 'bn'): Promise<ProductData | n
     const data = await response.json();
     return data.data as ProductData;
   } catch (error) {
-    console.error('Failed to fetch product data:', error);
+    console.error("Failed to fetch product data:", error);
     return null;
   }
 }
-
-

@@ -1,7 +1,7 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { ProductData, getProductData } from '@/lib/api';
-import ClientPage from './ClientPage';
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { ProductData, getProductData } from "@/lib/api";
+import ClientPage from "./ClientPage";
 
 interface PageProps {
   params: {
@@ -11,29 +11,30 @@ interface PageProps {
 
 // Generate static params for ISR
 export async function generateStaticParams() {
-  return [
-    { lang: 'en' },
-    { lang: 'bn' },
-  ];
+  return [{ lang: "en" }, { lang: "bn" }];
 }
 
 // Generate metadata for SEO
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const lang = params.lang as 'en' | 'bn';
-  
-  if (!['en', 'bn'].includes(lang)) {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const lang = (await params.lang) as "en" | "bn";
+
+  if (!["en", "bn"].includes(lang)) {
     return {};
   }
 
   const data = await getProductData(lang);
-  
+
   if (!data) {
     return {};
   }
 
   const title = data.seo?.title || data.title;
-  const description = data.seo?.description || data.description.replace(/<[^>]*>/g, '').substring(0, 160);
-  
+  const description =
+    data.seo?.description ||
+    data.description.replace(/<[^>]*>/g, "").substring(0, 160);
+
   return {
     title,
     description,
@@ -41,16 +42,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title,
       description,
-      images: data.media.filter(m => m.type === 'image').map(m => ({
-        url: m.source,
-        alt: m.alt_text,
-      })),
-      locale: lang === 'bn' ? 'bn_BD' : 'en_US',
+      images: data.media
+        .filter((m) => m.type === "image")
+        .map((m) => ({
+          url: m.source,
+          alt: m.alt_text,
+        })),
+      locale: lang === "bn" ? "bn_BD" : "en_US",
     },
     alternates: {
       languages: {
-        'en': '/en',
-        'bn': '/bn',
+        en: "/en",
+        bn: "/bn",
       },
     },
   };
@@ -58,16 +61,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 // Main page component with ISR
 export default async function Page({ params }: PageProps) {
-  const lang = params.lang as 'en' | 'bn';
-  
+  const lang = (await params.lang) as "en" | "bn";
+
   // Validate language parameter
-  if (!['en', 'bn'].includes(lang)) {
+  if (!["en", "bn"].includes(lang)) {
     notFound();
   }
 
   // Fetch data server-side for ISR
   const data = await getProductData(lang);
-  
+
   if (!data) {
     notFound();
   }
@@ -77,4 +80,3 @@ export default async function Page({ params }: PageProps) {
 
 // Enable ISR with revalidation
 export const revalidate = 3600; // Revalidate every hour
-

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
@@ -18,28 +19,30 @@ export default function Header({ data, lang, onLanguageChange }: HeaderProps) {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <div className="text-2xl font-bold text-blue-600">
-              10 Minute School
-            </div>
+            <img
+              src="https://cdn.10minuteschool.com/images/svg/10mslogo-svg.svg"
+              alt=""
+              className="w-32"
+            />
           </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
             <a
               href="#"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className="text-gray-700 hover:text-[#1eaa55] transition-colors"
             >
               {lang === "en" ? "Courses" : "কোর্স"}
             </a>
             <a
               href="#"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className="text-gray-700 hover:text-[#1eaa55] transition-colors"
             >
               {lang === "en" ? "Skills" : "স্কিল"}
             </a>
             <a
               href="#"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className="text-gray-700 hover:text-[#1eaa55] transition-colors"
             >
               {lang === "en" ? "About" : "সম্পর্কে"}
             </a>
@@ -54,7 +57,7 @@ export default function Header({ data, lang, onLanguageChange }: HeaderProps) {
               {lang === "en" ? "বাংলা" : "English"}
             </button>
 
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+            <button className="bg-[#1eaa55] text-white px-4 py-1 rounded-md hover:bg-[#1eaa55] transition-colors">
               {lang === "en" ? "Login" : "লগ-ইন"}
             </button>
 
@@ -84,13 +87,13 @@ export default function Header({ data, lang, onLanguageChange }: HeaderProps) {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t">
             <nav className="flex flex-col space-y-2">
-              <a href="#" className="text-gray-700 hover:text-blue-600 py-2">
+              <a href="#" className="text-gray-700 hover:text-[#1eaa55] py-2">
                 {lang === "en" ? "Courses" : "কোর্স"}
               </a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 py-2">
+              <a href="#" className="text-gray-700 hover:text-[#1eaa55] py-2">
                 {lang === "en" ? "Skills" : "স্কিল"}
               </a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 py-2">
+              <a href="#" className="text-gray-700 hover:text-[#1eaa55] py-2">
                 {lang === "en" ? "About" : "সম্পর্কে"}
               </a>
             </nav>
